@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B& Advisory | Intelligence Report 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Montserrat:wght@100;200;300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --brand-blue: #0A1128;
+            --brand-silver: #C0C0C0;
+            --off-white: #F8FAFC;
+            --metal-gradient: linear-gradient(135deg, #7D7D7D 0%, #C0C0C0 50%, #F5F5F5 100%);
+            --transition-speed: 0.8s;
+            /* Secciones de Pantalla Bloqueadas */
+            --h-header: 15vh;
+            --h-content: 60vh;
+            --h-footer: 25vh;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--off-white);
+            color: var(--brand-blue);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* FONDO DINÁMICO: TUNNEL VISION (Restaurado) */
+        .kinetic-bg {
+            position: fixed;
+            top: 50%; left: 50%; width: 250vmax; height: 250vmax;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            background: repeating-conic-gradient(
+                from 0deg,
+                transparent 0deg 0.35deg,
+                rgba(10, 17, 40, 0.04) 0.35deg 0.7deg
+            );
+            animation: rotateTunnel 300s linear infinite;
+        }
+
+        @keyframes rotateTunnel { 
+            from { transform: translate(-50%, -50%) rotate(0deg); } 
+            to { transform: translate(-50%, -50%) rotate(360deg); } 
+        }
+
+        /* ESTRUCTURA DE NAVEGACIÓN */
+        .viewport { width: 100vw; height: 100vh; overflow: hidden; position: relative; }
+        .slides-wrapper { display: flex; height: 100%; transition: transform var(--transition-speed) cubic-bezier(0.85, 0, 0.15, 1); }
+
+        .slide {
+            min-width: 100vw; height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        /* HEADER: ZONA DE LOGO */
+        .header-section { 
+            height: var(--h-header);
+            display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+            width: 100%; z-index: 50; flex-shrink: 0;
+            padding-bottom: 2vh;
+        }
+        .monogram {
+            font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem);
+            background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); letter-spacing: -2px;
+        }
+        .advisory-title {
+            font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 12px;
+            text-transform: uppercase; font-weight: 400; color: var(--brand-blue); margin-top: 5px;
+        }
+
+        /* MAIN CONTENT: ZONA SEGURA (SAFE ZONE) */
+        .main-section {
+            height: var(--h-content);
+            width: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            overflow: hidden; 
+            z-index: 10;
+        }
+
+        h1 { font-size: clamp(1.4rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.1; color: var(--brand-blue); max-width: 900px; margin-bottom: 12px; letter-spacing: -1px; }
+        h1 span { color: var(--brand-silver); font-weight: 200; }
+        .slide-tag { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 5px; color: var(--brand-blue); margin-bottom: 12px; opacity: 0.6; font-weight: 700; }
+        .lead-text { font-size: clamp(0.85rem, 1.3vw, 1.1rem); font-weight: 300; color: #334155; max-width: 750px; line-height: 1.6; }
+
+        /* GRÁFICO DE RED: SIN CUADROS BLANCOS */
+        .network-map {
+            position: relative;
+            width: 100%; max-width: 750px; height: 260px;
+            display: flex; justify-content: center; align-items: center;
+            margin-top: 10px;
+        }
+
+        .scz-nucleus {
+            z-index: 40; font-family: 'Cinzel', serif; font-weight: 900;
+            letter-spacing: 7px; font-size: 1.1rem; color: var(--brand-blue);
+            position: relative; padding-bottom: 5px;
+            text-shadow: 0 0 15px white;
+        }
+
+        .scz-nucleus::after {
+            content: ''; position: absolute; bottom: 0; left: 15%; right: 15%; height: 2px;
+            background: var(--metal-gradient); opacity: 0.6;
+        }
+
+        .node-point { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 30; }
+        .node-dot { width: 10px; height: 10px; background: var(--brand-blue); border-radius: 50%; margin-bottom: 8px; position: relative; }
+        .node-dot::after {
+            content: ''; position: absolute; top: -10px; left: -10px; width: 30px; height: 30px;
+            border: 1px solid var(--brand-blue); border-radius: 50%;
+            animation: pulseSignal 3s infinite ease-out;
+        }
+
+        @keyframes pulseSignal { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+
+        .city-label { font-family: 'Cinzel', serif; font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; color: var(--brand-blue); display: block; }
+        .market-label { font-family: 'Montserrat'; font-size: 0.5rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+
+        .line-vector {
+            position: absolute; height: 1px;
+            background: linear-gradient(90deg, var(--brand-blue) 0%, transparent 100%);
+            transform-origin: left center; opacity: 0.15; z-index: 10;
+        }
+
+        /* GRID DE INFORMACIÓN */
+        .info-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;
+            width: 100%; max-width: 1100px; margin-top: 25px; text-align: left;
+        }
+
+        .info-cell { border-top: 1px solid rgba(10, 17, 40, 0.1); padding-top: 15px; }
+        .info-cell h3 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--brand-blue); margin-bottom: 8px; }
+        .info-cell p { font-size: 0.8rem; color: #64748b; line-height: 1.5; }
+
+        /* FOOTER: NAVEGACIÓN REFORZADA (VISIBILIDAD TOTAL) */
+        .footer-section {
+            position: fixed;
+            bottom: 0; left: 0;
+            height: var(--h-footer);
+            width: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            gap: 20px; z-index: 1000; /* Prioridad máxima */
+            background: linear-gradient(to top, #ffffff 60%, transparent); /* Fondo más sólido para contraste */
+            border-top: 1px solid rgba(10, 17, 40, 0.05);
+        }
+
+        .category-menu {
+            display: flex; gap: 35px; font-size: 0.65rem; letter-spacing: 5px;
+            font-weight: 700; text-transform: uppercase; opacity: 0.5;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .category-menu span:hover { opacity: 1; color: var(--brand-blue); }
+        .category-menu span.active { opacity: 1; color: var(--brand-blue); border-bottom: 2px solid var(--brand-blue); padding-bottom: 5px; }
+
+        .nav-controls { 
+            display: flex; 
+            align-items: center; 
+            gap: 40px; 
+            z-index: 1001;
+        }
+
+        .btn-nav {
+            background: white; /* Fondo blanco para asegurar visibilidad */
+            border: 1.5px solid var(--brand-blue); 
+            color: var(--brand-blue);
+            width: 54px; height: 54px; border-radius: 50%; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .btn-nav:hover { background: var(--brand-blue); color: white; transform: scale(1.1); }
+        
+        .dots-nav { display: flex; gap: 14px; }
+        .dot-item { width: 10px; height: 10px; background: rgba(10, 17, 40, 0.15); border-radius: 50%; transition: 0.3s; cursor: pointer; }
+        .dot-item.active { background: var(--brand-blue); transform: scale(1.6); }
+
+        /* AGENDA Y STATS */
+        .agenda-container { width: 100%; max-width: 800px; text-align: left; }
+        .agenda-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(10, 17, 40, 0.08); }
+        .agenda-row span:first-child { font-size: 1.1rem; font-weight: 600; }
+        .agenda-row span:last-child { font-weight: 900; color: var(--brand-blue); letter-spacing: 2px; font-size: 0.65rem; text-transform: uppercase; }
+
+        .stat-large { font-size: clamp(3rem, 9vw, 5.5rem); font-weight: 800; line-height: 1; color: var(--brand-blue); margin-bottom: 10px; }
+
+        @media (max-width: 900px) {
+            .info-grid { grid-template-columns: 1fr; gap: 15px; }
+            h1 { font-size: 1.5rem; }
+            .category-menu { display: none; }
+            .network-map { transform: scale(0.7); height: 240px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kinetic-bg"></div>
+
+    <div class="viewport">
+        <div class="slides-wrapper" id="masterContainer">
+            
+            <!-- SLIDE 1: PORTADA -->
+            <section class="slide" data-cat="ESTRATEGIA" data-index="0">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">2026 Intelligence Report</span>
+                    <h1>Inmobiliaria 3.0: La oportunidad del <span>Real Estate Digital</span></h1>
+                    <p class="lead-text">
+                        Infraestructura estratégica blockchain para <strong>Santa Cruz de la Sierra</strong> ante el nuevo paradigma de liquidez global.
+                    </p>
+                    <div style="margin-top: 30px; font-size: 0.75rem; letter-spacing: 6px; font-weight: 700; opacity: 0.7;">
+                        TRADICIÓN JURÍDICA • INNOVACIÓN DIGITAL
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: EL DESAFÍO -->
+            <section class="slide" data-cat="ESTRATEGIA" data-index="1">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Ineficiencia Financiera</span>
+                    <h1>El costo de la inacción <span>en Bolivia</span></h1>
+                    <div class="info-grid">
+                        <div class="info-cell">
+                            <h3>Escasez Divisas</h3>
+                            <p>La falta de moneda física paraliza la repatriación de capitales y el flujo operativo.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Fricción Bancaria</h3>
+                            <p>Liquidaciones de <strong>+ 72 horas</strong> que resultan incompatibles con la agilidad global.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Brecha Legal</h3>
+                            <p>Inseguridad operativa ante la falta de una estructura de cumplimiento para activos virtuales.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: RED GLOBAL -->
+            <section class="slide" data-cat="TECNOLOGÍA" data-index="2">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Global Connectivity</span>
+                    <h1>Santa Cruz conectada al <span>Capital Global</span></h1>
+                    <div class="network-map">
+                        <div class="scz-nucleus">SANTA CRUZ</div>
+                        <div class="node-point" style="top: 0; left: 30%;">
+                            <div class="node-dot"></div>
+                            <div class="node-info"><span class="city-label">MIAMI</span><span class="market-label">VALOR DE REFUGIO</span></div>
+                        </div>
+                        <div class="node-point" style="bottom: 8%; left: 18%;">
+                            <div class="node-dot"></div>
+                            <div class="node-info"><span class="city-label">ASUNCIÓN</span><span class="market-label">FLUJO REGIONAL</span></div>
+                        </div>
+                        <div class="node-point" style="top: 40%; right: 10%;">
+                            <div class="node-dot"></div>
+                            <div class="node-info"><span class="city-label">DUBÁI</span><span class="market-label">CAPITAL DIGITAL</span></div>
+                        </div>
+                        <div class="line-vector" style="width: 250px; left: 45%; top: 50%; transform: rotate(-130deg);"></div>
+                        <div class="line-vector" style="width: 320px; left: 45%; top: 55%; transform: rotate(155deg);"></div>
+                        <div class="line-vector" style="width: 380px; left: 55%; top: 50%; transform: rotate(-8deg);"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: SOBERANÍA T+0 -->
+            <section class="slide" data-cat="TECNOLOGÍA" data-index="3">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Infraestructura Digital</span>
+                    <h1>Hacia una <span>Soberanía Financiera</span></h1>
+                    <div class="info-grid">
+                        <div class="info-cell">
+                            <h3>Stablecoin Rails</h3>
+                            <p>Implementación de USDC para cierres internacionales inmediatos y garantizados.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Compliance ASFI</h3>
+                            <p>Operativa 100% legal bajo el nuevo marco regulatorio para activos virtuales.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Optimización</h3>
+                            <p>Eliminación de intermediarios con costos operativos reales menores al 1%.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: IMPACTO ROI -->
+            <section class="slide" data-cat="TECNOLOGÍA" data-index="4">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Rentabilidad Directa</span>
+                    <h1>Optimización de <span>Retornos Reales</span></h1>
+                    <div style="display: flex; gap: 70px; align-items: center; justify-content: center; flex-wrap: wrap;">
+                        <div style="text-align: left;">
+                            <div class="stat-large">75%</div>
+                            <p style="font-weight: 800; letter-spacing: 4px; font-size: 0.75rem;">AHORRO EN TIEMPO</p>
+                        </div>
+                        <div style="text-align: left; max-width: 420px;">
+                            <p style="margin-bottom: 12px;">Eliminar la fricción bancaria tradicional permite a las agencias duplicar su volumen transaccional anual.</p>
+                            <p><strong>Clave:</strong> Control absoluto sobre el flujo de comisiones transfronterizas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: MARCO ASFI -->
+            <section class="slide" data-cat="CUMPLIMIENTO" data-index="5">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Blindaje Legal</span>
+                    <h1>Seguridad Jurídica <span>Institucional</span></h1>
+                    <p class="lead-text">La Resolución ASFI habilita un entorno seguro para la bancarización de activos digitales mediante cumplimiento estricto.</p>
+                    <div class="info-grid" style="grid-template-columns: 1fr 1fr; max-width: 850px;">
+                        <div class="info-cell">
+                            <h3>Validación PSAV</h3>
+                            <p>Protocolos de prevención UIF y KYC para asegurar la legitimidad del origen de fondos.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Contratos Proptech</h3>
+                            <p>Estructuración jurídica que integra activos virtuales como medio de pago legal.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: AUTORIDAD -->
+            <section class="slide" data-cat="CUMPLIMIENTO" data-index="6">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Nuestra Autoridad</span>
+                    <h1>Tradición Jurídica e <span>Innovación</span></h1>
+                    <div class="info-grid">
+                        <div class="info-cell">
+                            <h3>Líderes Legaltech</h3>
+                            <p>Fusionamos el derecho mercantil tradicional con los nuevos protocolos blockchain.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Asesoría C-Level</h3>
+                            <p>Consultoría exclusiva para directivos que buscan liderar la nueva economía.</p>
+                        </div>
+                        <div class="info-cell">
+                            <h3>Protección Técnica</h3>
+                            <p>Garantizamos que cada fase de la transacción sea técnicamente blindada.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: AGENDA -->
+            <section class="slide" data-cat="CUMPLIMIENTO" data-index="7">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Hoja de Ruta</span>
+                    <h1>Estructura de la <span>Masterclass</span></h1>
+                    <div class="agenda-container">
+                        <div class="agenda-row"><span>01. Ingeniería Regulatoria ASFI</span><span>LEGAL</span></div>
+                        <div class="agenda-row"><span>02. Tokenización de Comisiones</span><span>FINTECH</span></div>
+                        <div class="agenda-row"><span>03. Protección de Cierre NCNDA</span><span>ESTRATEGIA</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: QUOTE -->
+            <section class="slide" data-index="8">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <div style="max-width: 850px;">
+                        <i class="fa-solid fa-quote-left" style="font-size: 2.5rem; color: var(--brand-silver); margin-bottom: 25px; opacity: 0.5;"></i>
+                        <h1 style="font-size: 2.1rem; font-weight: 300; font-style: italic; line-height: 1.4;">"El mercado inmobiliario de Santa Cruz ya no es local. Hoy competimos por el capital global, y quien no domine los rieles digitales quedará fuera del juego."</h1>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: CTA -->
+            <section class="slide" data-index="9">
+                <header class="header-section">
+                    <span class="monogram">B&</span>
+                    <span class="advisory-title">Advisory</span>
+                </header>
+                <div class="main-section">
+                    <span class="slide-tag">Soberanía Financiera</span>
+                    <h1>Inicie su transformación <span>Proptech</span></h1>
+                    <div style="margin: 25px 0;">
+                        <span class="stat-large">850 Bs.</span>
+                        <p style="letter-spacing: 7px; color: var(--brand-blue); font-weight: 700; margin-top: 10px; text-transform: uppercase; font-size: 0.7rem;">INVERSIÓN POR EJECUTIVO</p>
+                    </div>
+                    <p class="lead-text" style="font-size: 1.1rem; font-weight: 400;">Mayo 2026 • Masterclass Virtual Exclusiva</p>
+                    <a href="#" class="btn-nav" style="width: auto; padding: 0 50px; border-radius: 4px; margin-top: 25px; font-weight: 800; letter-spacing: 4px; text-decoration: none;">RESERVAR ACCESO</a>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- UI NAVEGACIÓN REFORZADA ABAJO -->
+    <div class="footer-section">
+        <div class="category-menu">
+            <span id="nav-ESTRATEGIA" onclick="goToSection('ESTRATEGIA')">ESTRATEGIA</span>
+            <span>•</span>
+            <span id="nav-TECNOLOGÍA" onclick="goToSection('TECNOLOGÍA')">TECNOLOGÍA</span>
+            <span>•</span>
+            <span id="nav-CUMPLIMIENTO" onclick="goToSection('CUMPLIMIENTO')">CUMPLIMIENTO</span>
+        </div>
+        <div class="nav-controls">
+            <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="dots-nav" id="dotNav"></div>
+            <button class="btn-nav" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const wrapper = document.getElementById('masterContainer');
+        const dotNav = document.getElementById('dotNav');
+
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = `dot-item ${i === 0 ? 'active' : ''}`;
+            dot.onclick = () => goToSlide(i);
+            dotNav.appendChild(dot);
+        }
+
+        function updateUI() {
+            wrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            document.querySelectorAll('.dot-item').forEach((d, i) => { d.className = `dot-item ${i === currentSlide ? 'active' : ''}`; });
+            const activeSlide = document.querySelectorAll('.slide')[currentSlide];
+            const cat = activeSlide.getAttribute('data-cat');
+            document.querySelectorAll('.category-menu span').forEach(s => s.classList.remove('active'));
+            if (cat) {
+                const label = document.getElementById(`nav-${cat}`);
+                if (label) label.classList.add('active');
+            }
+        }
+
+        function nextSlide() { if (currentSlide < totalSlides - 1) { currentSlide++; updateUI(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateUI(); } }
+        function goToSlide(index) { currentSlide = index; updateUI(); }
+        function goToSection(cat) {
+            const firstOfCat = Array.from(document.querySelectorAll('.slide')).find(s => s.getAttribute('data-cat') === cat);
+            if (firstOfCat) { currentSlide = parseInt(firstOfCat.getAttribute('data-index')); updateUI(); }
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === ' ') nextSlide(); if (e.key === 'ArrowLeft') prevSlide(); });
+        updateUI();
+    </script>
+</body>
+</html>
