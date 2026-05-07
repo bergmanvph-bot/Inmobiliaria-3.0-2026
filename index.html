@@ -15,11 +15,11 @@
             --off-white: #F8FAFC;
             --metal-gradient: linear-gradient(135deg, #7D7D7D 0%, #C0C0C0 50%, #F5F5F5 100%);
             --transition: 0.85s cubic-bezier(0.8, 0, 0.2, 1);
-            --safe-footer: 180px;
+            --safe-footer: 180px; 
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--off-white);
@@ -30,13 +30,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* FONDO DINÁMICO */
+        /* FONDO DINÁMICO: TUNNEL VISION */
         .kinetic-tunnel {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 300vmax;
-            height: 300vmax;
+            top: 50%; left: 50%; width: 300vmax; height: 300vmax;
             transform: translate(-50%, -50%);
             z-index: -1;
             background: repeating-conic-gradient(
@@ -47,199 +44,147 @@
             animation: rotateTunnel 320s linear infinite;
         }
 
-        @keyframes rotateTunnel {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes rotateTunnel { 
+            from { transform: translate(-50%, -50%) rotate(0deg); } 
+            to { transform: translate(-50%, -50%) rotate(360deg); } 
         }
 
-        .viewport {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .slides-container {
-            display: flex;
-            height: 100%;
-            transition: transform var(--transition);
-        }
+        .viewport { width: 100vw; height: 100vh; overflow: hidden; position: relative; }
+        .slides-container { display: flex; height: 100%; transition: transform var(--transition); }
 
         .slide {
-            min-width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            min-width: 100vw; height: 100vh;
+            display: flex; flex-direction: column;
             align-items: center;
             padding: 4vh 10% var(--safe-footer) 10%;
             position: relative;
-            overflow-y: auto;
+            overflow-y: auto; 
             text-align: center;
         }
 
-        /* BRANDING */
-        .header-lock {
-            width: 100%;
-            margin-bottom: 2vh;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* BRANDING FIJO */
+        .header-lock { 
+            width: 100%; margin-bottom: 2vh; flex-shrink: 0;
+            display: flex; flex-direction: column; align-items: center;
         }
-
         .monogram-brand {
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            font-size: clamp(2rem, 6vw, 3.2rem);
-            background: var(--metal-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-            letter-spacing: -2px;
+            font-family: 'Cinzel', serif; font-weight: 900; font-size: clamp(2rem, 6vw, 3.2rem);
+            background: var(--metal-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            line-height: 1; letter-spacing: -2px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
-
         .tagline-brand {
-            font-family: 'Cinzel', serif;
-            font-size: 0.65rem;
-            letter-spacing: 12px;
-            text-transform: uppercase;
-            color: var(--brand-blue);
-            display: block;
-            margin-top: 5px;
-            opacity: 0.8;
+            font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 12px;
+            text-transform: uppercase; color: var(--brand-blue); display: block; margin-top: 5px; opacity: 0.8;
         }
 
+        /* CUERPO DEL CONTENIDO */
         .slide-content {
-            width: 100%;
-            max-width: 1050px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            width: 100%; max-width: 1050px; margin: auto;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             flex-grow: 1;
         }
 
-        h1 {
-            font-size: clamp(1.5rem, 4.5vw, 2.6rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            text-wrap: balance;
-        }
-
+        h1 { font-size: clamp(1.5rem, 4.5vw, 2.6rem); font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--brand-blue); text-wrap: balance; }
         h1 span { color: var(--brand-silver); font-weight: 200; }
+        .label-cat { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 6px; color: var(--brand-blue); margin-bottom: 15px; font-weight: 700; opacity: 0.5; }
+        .p-main { font-size: clamp(0.9rem, 1.8vw, 1.15rem); font-weight: 300; line-height: 1.6; color: #475569; max-width: 800px; }
 
-        .label-cat {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            opacity: 0.5;
-        }
-
-        .p-main {
-            font-size: clamp(0.9rem, 1.8vw, 1.15rem);
-            font-weight: 300;
-            line-height: 1.6;
-            color: #475569;
-            max-width: 800px;
-        }
-
-        /* GRID */
+        /* GRID: MODELO DE DOBLE VÍA */
         .bridge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            width: 100%;
-            margin-top: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; width: 100%; margin-top: 30px;
         }
-
         .bridge-card {
             background: rgba(10, 17, 40, 0.02);
-            padding: 30px;
-            border-radius: 4px;
-            border-top: 3px solid var(--brand-silver);
-            text-align: left;
-            backdrop-filter: blur(10px);
+            padding: 30px; border-radius: 4px; border-top: 3px solid var(--brand-silver);
+            text-align: left; backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            display: flex; flex-direction: column; gap: 10px;
         }
+        .bridge-card h3 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--brand-blue); letter-spacing: 2px; font-weight: 900; }
+        .bridge-card p { font-size: 0.85rem; line-height: 1.5; color: #64748b; font-weight: 400; }
 
-        /* RADAR */
+        /* RADAR DE CONECTIVIDAD */
         .connectivity-radar {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: 320px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative; width: 100%; max-width: 800px; height: 320px;
+            display: flex; justify-content: center; align-items: center;
             margin-top: 20px;
         }
-
         .nucleus-scz {
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            letter-spacing: 8px;
-            font-size: clamp(1rem, 4vw, 1.2rem);
-            border-bottom: 2px solid var(--brand-silver);
+            z-index: 50; font-family: 'Cinzel', serif; font-weight: 900;
+            letter-spacing: 8px; font-size: clamp(1rem, 4vw, 1.2rem); color: var(--brand-blue);
+            padding-bottom: 8px; border-bottom: 2px solid var(--brand-silver);
+            text-shadow: 0 0 15px white;
         }
-
-        .node-city { position: absolute; display: flex; flex-direction: column; align-items: center; }
+        .node-city { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 30; }
         .node-pulse { width: 12px; height: 12px; background: var(--brand-blue); border-radius: 50%; margin-bottom: 10px; position: relative; }
-        
         .node-pulse::after {
-            content: '';
-            position: absolute;
-            top: -12px; left: -12px;
-            width: 36px; height: 36px;
-            border: 1px solid var(--brand-blue);
-            border-radius: 50%;
+            content: ''; position: absolute; top: -12px; left: -12px; width: 36px; height: 36px;
+            border: 1px solid var(--brand-blue); border-radius: 50%;
             animation: pulseInSpace 3.5s infinite ease-out;
         }
+        @keyframes pulseInSpace { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+        .city-label { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 3px; font-weight: 800; color: var(--brand-blue); }
 
-        @keyframes pulseInSpace {
-            0% { transform: scale(0.4); opacity: 1; }
-            100% { transform: scale(2.2); opacity: 0; }
-        }
-
-        /* NAVEGACION */
-        .nav-footer {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            height: var(--safe-footer);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to top, var(--off-white) 80%, transparent);
-            z-index: 2000;
-        }
-
-        .nav-btns { display: flex; align-items: center; gap: 45px; }
-        .btn-ui {
-            background: white; border: 1.5px solid var(--brand-blue);
-            color: var(--brand-blue); width: 56px; height: 56px;
-            border-radius: 50%; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.3s;
-        }
-
-        .btn-ui:hover { background: var(--brand-blue); color: white; transform: scale(1.1); }
-        
-        .step-dots { display: flex; gap: 14px; }
-        .dot-u { width: 10px; height: 10px; background: rgba(10, 17, 40, 0.1); border-radius: 50%; cursor: pointer; }
-        .dot-u.active { background: var(--brand-blue); transform: scale(1.6); }
-
-        /* POSICIONES RADAR */
+        /* POSICIONES DINÁMICAS NODOS */
         #node-miami { top: 0; left: 30%; }
         #node-asuncion { bottom: 8%; left: 18%; }
         #node-dubai { top: 40%; right: 10%; }
 
+        .vector-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.1; }
+
+        /* TOKEN DISPLAY */
+        .token-group {
+            display: flex; gap: 20px; margin-top: 25px;
+        }
+        .token-item {
+            background: white; padding: 10px 20px; border-radius: 6px;
+            font-weight: 800; font-size: 0.85rem; letter-spacing: 3px; 
+            border: 1px solid var(--brand-silver); color: var(--brand-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        /* NAVEGACIÓN UI */
+        .nav-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: var(--safe-footer);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: linear-gradient(to top, var(--off-white) 80%, transparent);
+            z-index: 2000; padding-bottom: 20px;
+        }
+        .cat-nav {
+            display: flex; gap: 40px; font-size: 0.65rem; letter-spacing: 5px;
+            font-weight: 700; text-transform: uppercase; margin-bottom: 20px; opacity: 0.4;
+        }
+        .cat-nav span.active { opacity: 1; color: var(--brand-blue); border-bottom: 2px solid var(--brand-blue); padding-bottom: 5px; }
+        
+        .nav-btns { display: flex; align-items: center; gap: 45px; }
+        .btn-ui {
+            background: white; border: 1.5px solid var(--brand-blue);
+            color: var(--brand-blue); width: 56px; height: 56px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+        }
+        .btn-ui:hover { background: var(--brand-blue); color: white; transform: scale(1.1); }
+        .step-dots { display: flex; gap: 14px; }
+        .dot-u { width: 10px; height: 10px; background: rgba(10, 17, 40, 0.1); border-radius: 50%; transition: 0.3s; cursor: pointer; }
+        .dot-u.active { background: var(--brand-blue); transform: scale(1.6); }
+
+        /* AGENDA */
+        .agenda-wrap { width: 100%; max-width: 850px; text-align: left; }
+        .agenda-row { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .agenda-row span:first-child { font-size: 1.15rem; font-weight: 600; color: var(--brand-blue); }
+        .agenda-row span:last-child { font-weight: 900; color: var(--brand-silver); letter-spacing: 2px; font-size: 0.75rem; text-transform: uppercase; }
+
         @media (max-width: 768px) {
-            .slide { padding-bottom: 160px; }
+            .cat-nav { display: none; }
+            .slide { padding-top: 4vh; padding-bottom: 160px; }
+            h1 { font-size: 1.6rem; }
+            .connectivity-radar { height: 260px; }
+            #node-miami { top: 5%; left: 10%; }
+            #node-asuncion { bottom: 15%; left: 5%; }
+            #node-dubai { top: 30%; right: 5%; }
             .bridge-grid { grid-template-columns: 1fr; }
             .nav-footer { height: 140px; }
         }
@@ -252,21 +197,49 @@
     <div class="viewport">
         <div class="slides-container" id="slidesWrapper">
             
-            <!-- SLIDE 1 -->
-            <section class="slide" data-cat="ESTRATEGIA">
+            <!-- SLIDE 1: PORTADA -->
+            <section class="slide" data-cat="ESTRATEGIA" data-index="0">
                 <header class="header-lock">
                     <span class="monogram-brand">B&</span>
                     <span class="tagline-brand">Advisory</span>
                 </header>
                 <div class="slide-content">
                     <span class="label-cat">Intelligence Report 2026</span>
-                    <h1>Real Estate 3.0 <br><span>Soberanía de Capital</span></h1>
-                    <p class="p-main">Infraestructura estratégica blockchain para el mercado inmobiliario de <strong>Santa Cruz</strong>. Conexión instantánea con la liquidez global.</p>
+                    <h1>Real Estate 3.0: <span>Soberanía de Capital</span></h1>
+                    <p class="p-main">
+                        Infraestructura estratégica blockchain para el mercado inmobiliario de <strong>Santa Cruz</strong>. Conexión instantánea con la liquidez global en tiempo real.
+                    </p>
+                    <div style="margin-top: 40px; font-weight: 800; font-size: 0.75rem; letter-spacing: 6px; opacity: 0.7;">
+                        ESTRATEGIA • TECNOLOGÍA • CUMPLIMIENTO
+                    </div>
                 </div>
             </section>
 
-            <!-- SLIDE 2 -->
-            <section class="slide" data-cat="TECNOLOGÍA">
+            <!-- SLIDE 2: MODELO DE DOBLE VÍA -->
+            <section class="slide" data-cat="ESTRATEGIA" data-index="1">
+                <header class="header-lock">
+                    <span class="monogram-brand">B&</span>
+                    <span class="tagline-brand">Advisory</span>
+                </header>
+                <div class="slide-content">
+                    <span class="label-cat">Value Proposition</span>
+                    <h1>Modelo de <span>Doble Vía</span></h1>
+                    <p class="p-main">Eliminamos las barreras financieras tradicionales para expandir su potencial de ventas.</p>
+                    <div class="bridge-grid">
+                        <div class="bridge-card">
+                            <h3>Inbound: Venta Exterior</h3>
+                            <p>Exporte el inventario de Santa Cruz a inversores en Miami, Dubái o Madrid. Liquidación inmediata y bancarizable sin las trabas del dólar físico local.</p>
+                        </div>
+                        <div class="bridge-card">
+                            <h3>Outbound: Proyectos Globales</h3>
+                            <p>Ofrezca a sus clientes locales acceso a desarrollos premium internacionales. Diversifique carteras con total seguridad jurídica y rieles digitales.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: RED GLOBAL -->
+            <section class="slide" data-cat="TECNOLOGÍA" data-index="2">
                 <header class="header-lock">
                     <span class="monogram-brand">B&</span>
                     <span class="tagline-brand">Advisory</span>
@@ -279,12 +252,84 @@
                         <div class="node-city" id="node-miami"><div class="node-pulse"></div><span class="city-label">MIAMI</span></div>
                         <div class="node-city" id="node-asuncion"><div class="node-pulse"></div><span class="city-label">ASUNCIÓN</span></div>
                         <div class="node-city" id="node-dubai"><div class="node-pulse"></div><span class="city-label">DUBÁI</span></div>
+                        <svg class="vector-svg" viewBox="0 0 800 320">
+                            <line x1="400" y1="160" x2="250" y2="60" stroke="#0A1128" stroke-width="1" stroke-dasharray="5,5" />
+                            <line x1="400" y1="160" x2="200" y2="280" stroke="#0A1128" stroke-width="1" stroke-dasharray="5,5" />
+                            <line x1="400" y1="160" x2="680" y2="140" stroke="#0A1128" stroke-width="1" stroke-dasharray="5,5" />
+                        </svg>
                     </div>
                 </div>
             </section>
 
-            <!-- SLIDE 3 -->
-            <section class="slide" data-cat="CUMPLIMIENTO">
+            <!-- SLIDE 4: INFRAESTRUCTURA T+0 -->
+            <section class="slide" data-cat="TECNOLOGÍA" data-index="3">
+                <header class="header-lock">
+                    <span class="monogram-brand">B&</span>
+                    <span class="tagline-brand">Advisory</span>
+                </header>
+                <div class="slide-content">
+                    <span class="label-cat">Rieles de Pago</span>
+                    <h1>Liquidación Digital <span>T+0</span></h1>
+                    <p class="p-main">Transformamos cierres de semanas en cierres de segundos mediante tecnología estable.</p>
+                    <div class="token-group">
+                        <div class="token-item">USDC</div>
+                        <div class="token-item">USDT</div>
+                    </div>
+                    <div class="bridge-grid" style="margin-top: 30px;">
+                        <div class="bridge-card">
+                            <h3>Cierres Inmediatos</h3>
+                            <p>Liquidación internacional directa eliminando el riesgo de elusión y los altos fees del sistema bancario tradicional.</p>
+                        </div>
+                        <div class="bridge-card">
+                            <h3>Cumplimiento PSAV</h3>
+                            <p>Estructuración bajo el marco oficial de Activos Virtuales en Bolivia, permitiendo la bancarización legal de capitales.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: MARCO LEGAL ASFI -->
+            <section class="slide" data-cat="CUMPLIMIENTO" data-index="4">
+                <header class="header-lock">
+                    <span class="monogram-brand">B&</span>
+                    <span class="tagline-brand">Advisory</span>
+                </header>
+                <div class="slide-content">
+                    <span class="label-cat">Seguridad Jurídica</span>
+                    <h1>Blindaje <span>Institucional</span></h1>
+                    <p class="p-main">Operamos bajo la Resolución ASFI para garantizar transparencia y legalidad total en cada contrato.</p>
+                    <div class="bridge-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="bridge-card">
+                            <h3>Contratos Proptech</h3>
+                            <p>Ingeniería legal que reconoce activos digitales como medio de pago reportable y válido para transacciones inmobiliarias.</p>
+                        </div>
+                        <div class="bridge-card">
+                            <h3>Validación KYC/UIF</h3>
+                            <p>Protocolos de prevención de lavado para asegurar la legitimidad del origen de fondos en cada cierre.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: AGENDA -->
+            <section class="slide" data-cat="CUMPLIMIENTO" data-index="5">
+                <header class="header-lock">
+                    <span class="monogram-brand">B&</span>
+                    <span class="tagline-brand">Advisory</span>
+                </header>
+                <div class="slide-content">
+                    <span class="label-cat">Masterclass Agenda</span>
+                    <h1>Estructura de la <span>Sesión</span></h1>
+                    <div class="agenda-wrap">
+                        <div class="agenda-row"><span>01. Ingeniería de Liquidación PSAV</span><span>LEGAL</span></div>
+                        <div class="agenda-row"><span>02. Venta Inbound (Santa Cruz al Mundo)</span><span>VENTAS</span></div>
+                        <div class="agenda-row"><span>03. Estrategia Outbound (Proyectos Globales)</span><span>ESTRATEGIA</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: CTA WHATSAPP -->
+            <section class="slide" data-index="6">
                 <header class="header-lock">
                     <span class="monogram-brand">B&</span>
                     <span class="tagline-brand">Advisory</span>
@@ -293,17 +338,26 @@
                     <span class="label-cat">Reserva de Plaza</span>
                     <h1>Lidere la <span>Inmobiliaria 3.0</span></h1>
                     <div style="margin: 30px 0;">
-                        <span style="font-size: 3.5rem; font-weight: 800; color: var(--brand-blue);">850 Bs.</span>
-                        <p style="letter-spacing: 4px; opacity: 0.6; font-weight: 700;">INVERSIÓN POR EJECUTIVO</p>
+                        <span style="font-size: clamp(3rem, 10vw, 4.5rem); font-weight: 800; font-family: 'Cinzel', serif; color: var(--brand-blue);">850 Bs.</span>
+                        <p style="letter-spacing: 6px; opacity: 0.6; margin-top: 10px; font-weight: 700;">INVERSIÓN POR EJECUTIVO</p>
                     </div>
-                    <a href="https://wa.me/59179465701" class="btn-ui" style="width: auto; padding: 0 40px; border-radius: 30px; text-decoration: none; font-weight: 800;">RESERVAR ACCESO</a>
+                    <p class="p-main" style="font-weight: 400; margin-top: 30px;">Mayo 2026 • Sesión Virtual Exclusiva • Cupos Limitados</p>
+                    <a href="https://wa.me/59179465701?text=Hola,%20quisiera%20reservar%20mi%20acceso%20para%20la%20Masterclass%20Inmobiliaria%203.0" class="btn-ui" style="width: auto; padding: 0 55px; border-radius: 4px; font-weight: 800; text-decoration: none;">RESERVAR ACCESO</a>
                 </div>
             </section>
 
         </div>
     </div>
 
+    <!-- UI NAVEGACIÓN -->
     <div class="nav-footer">
+        <div class="cat-nav">
+            <span id="nav-ESTRATEGIA" onclick="jumpTo('ESTRATEGIA')">ESTRATEGIA</span>
+            <span>•</span>
+            <span id="nav-TECNOLOGÍA" onclick="jumpTo('TECNOLOGÍA')">TECNOLOGÍA</span>
+            <span>•</span>
+            <span id="nav-CUMPLIMIENTO" onclick="jumpTo('CUMPLIMIENTO')">CUMPLIMIENTO</span>
+        </div>
         <div class="nav-btns">
             <button class="btn-ui" onclick="prev()"><i class="fa-solid fa-chevron-left"></i></button>
             <div class="step-dots" id="dotWrapper"></div>
@@ -318,7 +372,7 @@
         const wrapper = document.getElementById('slidesWrapper');
         const dotWrapper = document.getElementById('dotWrapper');
 
-        // Generar puntos
+        // Generar puntos de navegación
         slides.forEach((_, i) => {
             const d = document.createElement('div');
             d.className = `dot-u ${i === 0 ? 'active' : ''}`;
@@ -328,20 +382,38 @@
 
         function update() {
             wrapper.style.transform = `translateX(-${cur * 100}vw)`;
-            document.querySelectorAll('.dot-u').forEach((d, i) => {
-                d.className = `dot-u ${i === cur ? 'active' : ''}`;
-            });
+            document.querySelectorAll('.dot-u').forEach((d, i) => d.className = `dot-u ${i === cur ? 'active' : ''}`);
+            const cat = slides[cur].getAttribute('data-cat');
+            document.querySelectorAll('.cat-nav span').forEach(s => s.classList.remove('active'));
+            if (cat) {
+                const label = document.getElementById(`nav-${cat}`);
+                if (label) label.classList.add('active');
+            }
         }
 
         function next() { if (cur < total - 1) { cur++; update(); } }
         function prev() { if (cur > 0) { cur--; update(); } }
         function jump(i) { cur = i; update(); }
+        function jumpTo(cat) {
+            const first = Array.from(slides).find(s => s.getAttribute('data-cat') === cat);
+            if (first) { cur = parseInt(first.getAttribute('data-index') || 0); update(); }
+        }
 
-        // Soporte Teclado
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowRight' || e.key === ' ') next();
             if (e.key === 'ArrowLeft') prev();
         });
+
+        // Soporte para Swipe en móviles
+        let ts = 0;
+        document.addEventListener('touchstart', e => ts = e.changedTouches[0].screenX);
+        document.addEventListener('touchend', e => {
+            let te = e.changedTouches[0].screenX;
+            if (ts - te > 50) next();
+            if (te - ts > 50) prev();
+        });
+
+        update();
     </script>
 </body>
 </html>
